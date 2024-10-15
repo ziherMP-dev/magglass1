@@ -16,32 +16,58 @@ const App: React.FC = () => {
   const gameBoardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const newObjects = generateObjects(10, 20);
-    setObjects(newObjects);
-    setTargetObject(newObjects[Math.floor(Math.random() * newObjects.length)]);
+    loadNextTarget();
   }, []);
 
   const handleObjectClick = (clickedObject: ObjectType) => {
+    console.log(`Handling click for object: ${clickedObject.id}`);
     if (clickedObject.id === targetObject?.id) {
-      setObjectsFound((prev) => prev + 1);
-      const newObjects = generateObjects(10, 20);
-      setObjects(newObjects);
-      setTargetObject(newObjects[Math.floor(Math.random() * newObjects.length)]);
+      console.log('Correct object found!');
+      setObjectsFound((prev) => {
+        const newCount = prev + 1;
+        console.log(`Objects Found Updated: ${newCount}`);
+        return newCount;
+      });
+      loadNextTarget();
     } else {
-      setLives((prev) => prev - 1);
+      console.log('Incorrect object clicked.');
+      setLives((prev) => {
+        const updatedLives = Math.max(prev - 1, 0);
+        console.log(`Lives Updated: ${updatedLives}`);
+        if (updatedLives === 0) {
+          alert('Game Over! You have no more lives.');
+          // Optionally, implement game reset logic here
+        }
+        return updatedLives;
+      });
+    }
+  };
+
+  const loadNextTarget = () => {
+    const newObjects = generateObjects(10, 20);
+    setObjects(newObjects);
+    if (newObjects.length > 0) {
+      const newTarget = newObjects[Math.floor(Math.random() * newObjects.length)];
+      setTargetObject(newTarget);
+      console.log(`New target object set: ${newTarget.id}`);
+    } else {
+      console.error('No objects generated to set as target.');
     }
   };
 
   const handleStrengthChange = (newStrength: number) => {
     setMagnifyingGlassStrength(newStrength);
+    console.log(`Magnifying Glass Strength Updated: ${newStrength}`);
   };
 
   const handleSizeChange = (newSize: number) => {
     setMagnifyingGlassSize(newSize);
+    console.log(`Magnifying Glass Size Updated: ${newSize}`);
   };
 
   const handlePositionChange = (newPosition: { x: number; y: number }) => {
     setMagnifyingGlassPosition(newPosition);
+    console.log(`Magnifying Glass Position Updated: x=${newPosition.x}, y=${newPosition.y}`);
   };
 
   return (

@@ -19,13 +19,16 @@ const colors = [
   '#98D8C8', '#F67280', '#C06C84', '#6C5B7B',
 ];
 
+// Initialize a global unique ID counter
+let globalUniqueId = 0;
+
 export const generateObjects = (min: number, max: number): ObjectType[] => {
   const count = Math.floor(Math.random() * (max - min + 1)) + min;
   const objects: ObjectType[] = [];
 
   for (let i = 0; i < count; i++) {
     objects.push({
-      id: `object-${i}`,
+      id: `object-${globalUniqueId++}`, // Ensure unique IDs by incrementing the global counter
       x: Math.random() * 100,
       y: Math.random() * 100,
       color: colors[Math.floor(Math.random() * colors.length)],

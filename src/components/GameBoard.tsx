@@ -9,7 +9,7 @@ interface GameBoardProps {
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyingGlassPosition, magnifyingGlassSize }) => {
-  const clipPath = `circle(${magnifyingGlassSize / 2}px at ${magnifyingGlassPosition.x}px ${magnifyingGlassPosition.y}px)`;
+  console.log('GameBoard rendering, objects:', objects);
 
   return (
     <div className="w-full h-full relative cursor-none bg-gradient-to-br from-green-100 to-blue-100">
@@ -18,34 +18,55 @@ const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyin
         {objects.map((object) => (
           <div
             key={object.id}
-            className="absolute cursor-none transition-all duration-200 hover:scale-110"
+            className="absolute cursor-pointer transition-all duration-200 hover:scale-110"
             style={{
               left: `${object.x}%`,
               top: `${object.y}%`,
-              width: '6px', // Reduced from 24px
-              height: '6px', // Reduced from 24px
+              width: '20px',
+              height: '20px',
               backgroundColor: object.color,
               clipPath: object.shape,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '4px', // Further reduced from 6px
+              fontSize: '14px',
               fontWeight: 'bold',
               color: 'white',
-              textShadow: '0.25px 0.25px 0.25px rgba(0,0,0,0.5)', // Further adjusted text shadow
+              textShadow: '1px 1px 1px rgba(0,0,0,0.5)',
+              zIndex: 30,
+              border: '2px solid white',
+              borderRadius: '50%',
+              boxSizing: 'border-box',
             }}
-            onClick={() => onObjectClick(object)}
+            onClick={() => {
+              console.log(`Object clicked: ${object.id}`);
+              onObjectClick(object);
+            }}
           >
             {object.label}
           </div>
         ))}
+
+        {/* Temporary Test Button */}
+        <button
+          onClick={() => console.log('Test button clicked!')}
+          style={{
+            position: 'absolute',
+            top: '10px',
+            left: '10px',
+            padding: '10px 20px',
+            zIndex: 40, // Ensure it's above other elements
+          }}
+        >
+          Test Button
+        </button>
       </div>
 
       {/* Layer to completely hide original objects under magnifying glass */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'rgba(255, 255, 255, 1)', // Changed to fully opaque
+          background: 'rgba(255, 255, 255, 1)', // Fully opaque
           clipPath: `circle(${magnifyingGlassSize / 2}px at ${magnifyingGlassPosition.x}px ${magnifyingGlassPosition.y}px)`,
           zIndex: 20,
         }}
