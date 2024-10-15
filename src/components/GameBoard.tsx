@@ -22,17 +22,17 @@ const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyin
             style={{
               left: `${object.x}%`,
               top: `${object.y}%`,
-              width: '24px',
-              height: '24px',
+              width: '6px', // Reduced from 24px
+              height: '6px', // Reduced from 24px
               backgroundColor: object.color,
               clipPath: object.shape,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '12px',
+              fontSize: '4px', // Further reduced from 6px
               fontWeight: 'bold',
               color: 'white',
-              textShadow: '1px 1px 1px rgba(0,0,0,0.5)',
+              textShadow: '0.25px 0.25px 0.25px rgba(0,0,0,0.5)', // Further adjusted text shadow
             }}
             onClick={() => onObjectClick(object)}
           >

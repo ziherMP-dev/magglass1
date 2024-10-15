@@ -65,10 +65,14 @@ const SidePanel: React.FC<SidePanelProps> = ({
         </h3>
         {targetObject && (
           <div
-            className="w-16 h-16 mx-auto"
+            className="w-24 h-24 mx-auto flex items-center justify-center"
             style={{
               backgroundColor: targetObject.color,
               clipPath: targetObject.shape,
+              fontSize: '14px',
+              fontWeight: 'bold',
+              color: 'white',
+              textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
             }}
           >
             {targetObject.label}

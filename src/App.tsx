@@ -45,39 +45,34 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-blue-100 to-purple-100">
-      <header className="bg-white shadow-md p-4">
-        <h1 className="game-title text-center">Magnify & Find</h1>
-      </header>
-      <div className="flex flex-1 overflow-hidden">
-        <div className="flex-grow relative" ref={gameBoardRef}>
-          <GameBoard
-            objects={objects}
-            onObjectClick={handleObjectClick}
-            magnifyingGlassPosition={magnifyingGlassPosition}
-            magnifyingGlassSize={magnifyingGlassSize}
-          />
-          <MagnifyingGlass
-            strength={magnifyingGlassStrength}
-            size={magnifyingGlassSize}
-            parentRef={gameBoardRef}
-            objects={objects}
-            onStrengthChange={handleStrengthChange}
-            onSizeChange={handleSizeChange}
-            onPositionChange={handlePositionChange}
-          />
-        </div>
-        <SidePanel
-          magnifyingGlassStrength={magnifyingGlassStrength}
-          setMagnifyingGlassStrength={setMagnifyingGlassStrength}
+    <div className="flex h-screen bg-gradient-to-br from-blue-100 to-purple-100">
+      <div className="flex-grow relative" ref={gameBoardRef}>
+        <GameBoard
+          objects={objects}
+          onObjectClick={handleObjectClick}
+          magnifyingGlassPosition={magnifyingGlassPosition}
           magnifyingGlassSize={magnifyingGlassSize}
-          setMagnifyingGlassSize={setMagnifyingGlassSize}
-          targetObject={targetObject}
-          lives={lives}
-          timeLeft={timeLeft}
-          objectsFound={objectsFound}
+        />
+        <MagnifyingGlass
+          strength={magnifyingGlassStrength}
+          size={magnifyingGlassSize}
+          parentRef={gameBoardRef}
+          objects={objects}
+          onStrengthChange={handleStrengthChange}
+          onSizeChange={handleSizeChange}
+          onPositionChange={handlePositionChange}
         />
       </div>
+      <SidePanel
+        magnifyingGlassStrength={magnifyingGlassStrength}
+        setMagnifyingGlassStrength={setMagnifyingGlassStrength}
+        magnifyingGlassSize={magnifyingGlassSize}
+        setMagnifyingGlassSize={setMagnifyingGlassSize}
+        targetObject={targetObject}
+        lives={lives}
+        timeLeft={timeLeft}
+        objectsFound={objectsFound}
+      />
     </div>
   );
 };
