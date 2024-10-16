@@ -29,13 +29,11 @@ const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyin
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '14px',
+              fontSize: '2px',
               fontWeight: 'bold',
               color: 'white',
               textShadow: '1px 1px 1px rgba(0,0,0,0.5)',
               zIndex: 30,
-              border: '2px solid white',
-              borderRadius: '50%',
               boxSizing: 'border-box',
             }}
             onClick={() => {
@@ -48,18 +46,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyin
         ))}
 
         {/* Temporary Test Button */}
-        <button
-          onClick={() => console.log('Test button clicked!')}
-          style={{
-            position: 'absolute',
-            top: '10px',
-            left: '10px',
-            padding: '10px 20px',
-            zIndex: 40, // Ensure it's above other elements
-          }}
-        >
-          Test Button
-        </button>
+
       </div>
 
       {/* Layer to completely hide original objects under magnifying glass */}
