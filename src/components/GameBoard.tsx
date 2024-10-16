@@ -20,10 +20,10 @@ const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyin
             key={object.id}
             className="absolute cursor-pointer transition-all duration-200 hover:scale-110"
             style={{
-              left: `${object.x}%`,
-              top: `${object.y}%`,
-              width: '20px',
-              height: '20px',
+              left: `calc(${object.x}% + 10px)`, // Subtract half of the width
+              top: `calc(${object.y}% + 10px)`,  // Subtract half of the height
+              width: '10px',
+              height: '10px',
               backgroundColor: object.color,
               clipPath: object.shape,
               display: 'flex',
@@ -35,6 +35,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ objects, onObjectClick, magnifyin
               textShadow: '1px 1px 1px rgba(0,0,0,0.5)',
               zIndex: 30,
               boxSizing: 'border-box',
+              transformOrigin: 'center', // Add this line
             }}
             onClick={() => {
               console.log(`Object clicked: ${object.id}`);

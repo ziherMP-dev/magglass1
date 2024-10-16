@@ -69,10 +69,10 @@ const SidePanel: React.FC<SidePanelProps> = ({
             style={{
               backgroundColor: targetObject.color,
               clipPath: targetObject.shape,
-              fontSize: '14px',
+              fontSize: '50px',
               fontWeight: 'bold',
               color: 'white',
-              textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+              textShadow: '4px 4px 6px rgba(0,0,0,0.5)',
             }}
           >
             {targetObject.label}
